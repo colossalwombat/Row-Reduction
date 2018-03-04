@@ -37,18 +37,25 @@ def randomize(matrix, size, difficulty):
 
 		#add rows to another row
 		if roll == 1:
-			source = randint(0, size)
-			dest = randint(0, size)
+			source = randint(0, size - 1)
+			dest = randint(0, size - 1 )
 
 			while dest == source:
-				dest = randint(0, size)
+				dest = randint(0, size - 1)
+
+			sourcerow = matrix.row(source)
 
 			#add random scalar multiple of one row to another
-			#matrix.row(dest) = matrix.row(source) * randint(0, difficulty)
+			destrow = matrix.row(dest) + (matrix.row(source) * randint(size))
+			pprint(destrow)
+
+			matrix.row_del(dest)
+
+			matrix = matrix.row_insert(0, destrow)
 
 		#multiply rows
 		else:
-			chance = randint(size * 4)
+			chance = randint(1, size * 4)
 			multplier = 0
 			
 
