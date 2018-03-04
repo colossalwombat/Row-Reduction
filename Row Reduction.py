@@ -32,11 +32,10 @@ def generateRow(size, pos, difficulty ):
 
 def randomize(matrix, size, difficulty):
 
-	for i in range(0, difficulty * 8):
-		roll = randint(0, 2)
 
-		#add rows to another row
-		if roll == 1:
+	#randomize by adding a random scalar of one row to another
+	#technically it deletes the row then inserts it, but the results are the same
+	for i in range(0, difficulty * 2):
 			source = randint(0, size - 1)
 			dest = randint(0, size - 1 )
 
@@ -46,33 +45,11 @@ def randomize(matrix, size, difficulty):
 			sourcerow = matrix.row(source)
 
 			#add random scalar multiple of one row to another
-			destrow = matrix.row(dest) + (matrix.row(source) * randint(size))
-			pprint(destrow)
+			destrow = matrix.row(dest) + (matrix.row(source) * randint(-size, size))
 
 			matrix.row_del(dest)
 
 			matrix = matrix.row_insert(0, destrow)
-
-		#multiply rows
-		else:
-			chance = randint(1, size * 4)
-			multplier = 0
-			
-
-			#set the multiplier
-			if chance > size*2:
-				multplier = 1
-			else:
-				multplier = chance
-
-			print(multplier)
-
-
-			row = randint(0, size -1)
-			replacement = matrix.row(row) * multplier
-
-			matrix.row_del(row)
-			matrix = matrix.row_insert(0, replacement)
 
 	return matrix
 
