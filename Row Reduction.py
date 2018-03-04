@@ -2,9 +2,18 @@ import sympy as sy
 import numpy as np
 from numpy.random import randint
 from sympy import pprint
+import os
+
+
 
 
 print("Welcome to the endless row reducer!")
+
+def clear():
+	if windows:
+		os.system("cls")
+	else:
+		os.system("clear")
 
 
 def randomvalue(difficulty):
@@ -17,7 +26,7 @@ def randomvalue(difficulty):
 
 	return root
 
-def generateRow(size, pos, difficulty ):
+def generateRow(size, pos, difficulty):
 	row = []
 
 	for i in range(1, size):
@@ -53,9 +62,14 @@ def randomize(matrix, size, difficulty):
 
 	return matrix
 
+#determine the os
+windows = False
+if os.name == 'nt':
+	windows = True
 
-
+#program loop
 while True:
+	clear()
 	print("Choose a difficulty:\n 1.Management\n 2.Arts\n 3.Honours Math/CS \n 4.Wang\n 5.Kelome's Multiple Choice\n 6+.Kicking a wall with a toothpick under your toenail\n")
 	
 	difficulty = int(input("Please enter your selection(1-5): "))
@@ -64,12 +78,9 @@ while True:
 
 
 	A = sy.Matrix()
-
-	#rownum = np.clip(np.random.randint(size*2), difficulty - 1, size)
-	rownum = size
 	
 
-	for i in range(1, rownum):
+	for i in range(1, size):
 		chance = 2
 
 		if chance == 2:
@@ -81,18 +92,25 @@ while True:
 		A = A.row_insert(0, row)
 
 
-
+	#randomize the matrix
 	A = randomize(A, size, difficulty)
+	clear()
 
+
+	print("SOLVE!")
 	pprint(A)
 
 	input("When there is \"No Hope,\" press any key to see how off you were")
 
-	print("The right answer was:")
 
+	print("\nYOU FOOL!\nThe right answer was:")
+
+	
 	pprint(A.rref())
 
+	a = input("Can you continue? Y/N\n")
 
-
-
-	exit()
+	if a == 'n' or a == 'N':
+		exit()
+	else:
+		continue
