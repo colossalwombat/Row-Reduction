@@ -8,7 +8,8 @@ once a solution is requested.
 
 ## Dependencies
 
-`numpy, sympy'
+numpy >= 1.13.3
+sympy >= 1.1.1
 
 
 ## Installation (for those new to Python)
