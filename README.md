@@ -9,6 +9,7 @@ once a solution is requested.
 ## Dependencies
 
 numpy >= 1.13.3
+
 sympy >= 1.1.1
 
 
