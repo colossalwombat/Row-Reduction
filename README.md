@@ -14,9 +14,12 @@ once a solution is requested.
 ## Installation (for those new to Python)
 1. Install Python 3 from python.org
 2. Install the dependencies
-'pip3 install numpy sympy'
+
+`pip3 install numpy sympy`
+
 3. Download and the run the script (clone the repository or just use the zip download)
 Run from the same folder as the "Row Reduction.py"
+
 `python3 "Row Reduction.py"`
 
 Happy solving!
