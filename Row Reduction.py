@@ -43,8 +43,12 @@ def randomize(matrix, size, difficulty):
 
 
 	#randomize by adding a random scalar of one row to another
-	#technically it deletes the row then inserts it, but the results are the same
-	for i in range(0, difficulty * 2):
+	#technically it deletes the row then inserts it, but the results are effectively the same
+	for i in range(0, difficulty * 3):
+		#eliminate the addition of the same equation twice because its causing issues
+		roll = 6
+
+		if roll != 5:
 			source = randint(0, size - 1)
 			dest = randint(0, size - 1 )
 
@@ -60,7 +64,27 @@ def randomize(matrix, size, difficulty):
 
 			matrix = matrix.row_insert(0, destrow)
 
+		else:
+			#grab a random row, multiply it by a scalar and insert (not add) it to the matrix
+			source = randint(0, size - 1)
+
+			matrix = matrix.row_insert(0, (matrix.row(source) * randint(-size * 3, size * 3)))
+
+
 	return matrix
+
+def getDifficulty():
+	while True:
+		difficulty = input("Choose your selection:")
+
+		try:
+			difficulty = int(difficulty)
+		except:
+			print("ENTER AN INTEGER, FOOL!")
+			continue
+		break
+	return difficulty
+
 
 #determine the os
 windows = False
@@ -72,7 +96,8 @@ while True:
 	clear()
 	print("Choose a difficulty:\n 1.Management\n 2.Arts\n 3.Honours Math/CS \n 4.Wang\n 5.Kelome's Multiple Choice\n 6+.Kicking a wall with a toothpick under your toenail\n")
 	
-	difficulty = int(input("Please enter your selection(1-5): "))
+
+	difficulty = getDifficulty()
 
 	size = difficulty + 2
 
